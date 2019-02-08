@@ -63,11 +63,11 @@ if ( ! function_exists('m3task_display_metabox') ) {
         wp_nonce_field( plugin_basename(__FILE__), 'm3task_nonce' ); // Security field
         $default_data = array(
             'task_date_start' => date( 'Y-m-d' ),
-            'task_due_date' => date( 'Y-m-d' ),
-            'task_priority' => 'Low',
+            'task_due_date'   => date( 'Y-m-d' ),
+            'task_priority'   => 'Low',
         );
-        $saved_data = get_post_meta( $post->ID, 'm3task_metaboxes', true );
-        $render_data = wp_parse_args( $saved_data, $default_data );
+        $saved_data      = get_post_meta( $post->ID, 'm3task_metaboxes', true );
+        $render_data     = wp_parse_args( $saved_data, $default_data );
         $priority_levels = array( 'Low', 'Normal', 'High' ); // Set levels priority of tasks
         // Display metabox fields, trying to do not use custom CSS, using existing classes
         echo '<div class="metabox-prefs"><table><tbody><tr>';
@@ -133,8 +133,8 @@ if( ! function_exists( 'm3task_add_columns' ) ) {
         $add_to = 2; // Count of columns, after which will added columns
         $new_columns = array(
             'task_date_start' => __( 'Date of start', 'm3task' ),
-            'task_due_date' => __( 'Due date', 'm3task' ),
-            'task_priority' => __( 'Priority', 'm3task' ),
+            'task_due_date'   => __( 'Due date', 'm3task' ),
+            'task_priority'   => __( 'Priority', 'm3task' ),
         );
         
         return array_slice( $columns, 0, $add_to ) + $new_columns + array_slice( $columns, $add_to );
@@ -145,7 +145,7 @@ add_action( 'manage_task_posts_custom_column', 'm3task_set_columns', 5, 2 );
 if( ! function_exists( 'm3task_set_columns' ) ) {
     function m3task_set_columns( $column_name, $post_id ) {
         $get_data = get_post_meta( $post_id, 'm3task_metaboxes', true ); // Load data of columns
-        $value = $get_data[ $column_name ]; // Get value of column
+        $value    = $get_data[ $column_name ]; // Get value of column
         if( ! $value ) { // If false, show '---', not clear column
             echo '---';
             return;
@@ -175,15 +175,15 @@ if ( ! function_exists( 'm3test_set_taxonomy' ) ) {
         register_taxonomy( 'task_types', array( 'task' ), array(
             'labels' => array( 
                 'name' => 'Task types',
-                'singular_name' => 'Task type',
-                'search_items' => 'Search Task types',
-                'all_items'         => 'All Task types',
-		'view_item '        => 'View Task type',
-		'edit_item'         => 'Edit Task type',
-		'update_item'       => 'Update Task type',
-		'add_new_item'      => 'Add New Task type',
-		'new_item_name'     => 'New Task type Name',
-		'menu_name'         => 'Task types',
+                'singular_name'     => __( 'Task type', 'm3task' ),
+                'search_items'      => __( 'Search Task types', 'm3task' ),
+                'all_items'         => __( 'All Task types', 'm3task' ),
+		'view_item '        => __( 'View Task type', 'm3task' ),
+		'edit_item'         => __( 'Edit Task type', 'm3task' ),
+		'update_item'       => __( 'Update Task type', 'm3task' ),
+		'add_new_item'      => __( 'Add New Task type', 'm3task' ),
+		'new_item_name'     => __( 'New Task type Name', 'm3task' ),
+		'menu_name'         => __( 'Task types', 'm3task' ),
             ),
             'public' => true,
             'show_in_rest' => true, // Important for WP > 5.0 for Guttenberg support
