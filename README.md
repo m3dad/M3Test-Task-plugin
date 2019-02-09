@@ -15,4 +15,4 @@ There is small list of abilities of this plugin:
 * Metaboxes and post type Task have Gutenberg support ('show_in_rest' solution)
 
 ## Install
-Just download this plugin, add it to plugins directory, unpack and activate in Wordpress admin panel.
+Just download this plugin, unpack, add it to plugins directory and activate in Wordpress admin panel.
